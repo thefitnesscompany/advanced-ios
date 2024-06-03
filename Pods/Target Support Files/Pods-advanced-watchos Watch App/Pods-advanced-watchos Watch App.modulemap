@@ -1,0 +1,6 @@
+framework module Pods_advanced_watchos_Watch_App {
+  umbrella header "Pods-advanced-watchos Watch App-umbrella.h"
+
+  export *
+  module * { export * }
+}

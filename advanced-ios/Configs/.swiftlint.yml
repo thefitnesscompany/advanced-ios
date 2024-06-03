@@ -1,0 +1,9 @@
+disabled_rules:
+- trailing_whitespace
+
+excluded:
+- ${PWD}/Pods
+
+line_length:
+    warning: 150
+    error: 200

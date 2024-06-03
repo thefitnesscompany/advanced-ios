@@ -1,0 +1,35 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Add Item" : {
+
+    },
+    "Application doesn't have all permissions to use camera and microphone, please change privacy settings." : {
+
+    },
+    "Go to settings" : {
+
+    },
+    "Item at %@" : {
+
+    },
+    "LandingView.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Advanced"
+          }
+        }
+      }
+    },
+    "Select an item" : {
+
+    },
+    "Warning" : {
+
+    }
+  },
+  "version" : "1.0"
+}
