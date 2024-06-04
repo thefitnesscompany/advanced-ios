@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct ExerciseViewLegacy: View {
+    
+    enum ScrollableFields: Hashable {
+      case weight
+      case reps
+    }
+    
     @State private var exerciseIdx: Int = 0
     @State private var exercises: [Exercise] = dummyExerciseData
     
@@ -38,23 +44,23 @@ struct ExerciseViewLegacy: View {
             
             VStack(alignment: .leading) {
                 HStack(alignment: .center) {
-                        HStack(alignment: .lastTextBaseline) {
-                            ZStack {
-                                Text("105.25")
-                                    .layoutPriority(2)
-                                
+                    HStack(alignment: .lastTextBaseline) {
+                        ZStack {
+                            Text("105.25")
+                                .layoutPriority(2)
+                            
 //                                Line()
 //                                   .stroke(style: StrokeStyle(lineWidth: 2, dash: [2]))
 //                                   .frame(height: 1)
 //                                   .padding(.top, 35)
 //                                   .padding(.leading, 8)
 //                                   .foregroundStyle(.gray)
-                            }
-                            
-                            Text("KG")
-                                .font(.system(.footnote))
                         }
-                        .layoutPriority(2)
+                        
+                        Text("KG")
+                            .font(.system(.footnote))
+                    }
+                    .layoutPriority(2)
                         
                     Spacer()
                     

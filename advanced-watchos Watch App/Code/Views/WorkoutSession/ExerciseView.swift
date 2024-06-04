@@ -2,152 +2,128 @@
 //  ExerciseView2.swift
 //  advanced-watchos Watch App
 //
-//  Created by Harsh Patel on 02/06/24.
+//  Created by Harsh Patel on 04/06/24.
 //
 
 import SwiftUI
 
-enum ScrollableFields: Hashable {
-  case weight
-  case reps
-}
-
 struct ExerciseView: View {
     /// View Models
-    @ObservedObject var workoutVM: WorkoutViewModel
+    @ObservedObject var exerciseVM: ExerciseViewModel
     
-    /// View Properties
+    // Below state variables are only used for HorizontalSlider to work as it takes Binding argument.
     @State private var weight: CGFloat = 0
+    @State private var reps: CGFloat = 0
+    
     var weightSliderViewConfig: HorizontalSliderView.Config = .init(
         label: "KG",
         roundingSpecifier: Rounding.hundredths.specifierString(),
         sliderConfig: .init(count: 300, steps: 4, spacing: 8, multiplier: 1)
     )
-    
-    @State private var reps: CGFloat = 0
     var repsSliderViewConfig: HorizontalSliderView.Config = .init(
         label: "REPS",
         roundingSpecifier: Rounding.ones.specifierString(),
         sliderConfig: .init(count: 200, steps: 5, spacing: 10, multiplier: 5)
     )
     
-    @State var crownValue: Double = 0
-    
     /// Toggles
-    @State var showOptions: Bool = false
+    @State var showOptionsMenu: Bool = false
     @State var showWeightSlider: Bool = false
     @State var showRepsSlider: Bool = false
+    @State var showSetRecorder: Bool = false
     
     let screenBounds = WKInterfaceDevice.current().screenBounds
     
     var body: some View {
-        TabView(selection: $workoutVM.currentExerciseIdx) {
-            ForEach($workoutVM.exercises.indices, id: \.self) { index in
-                VStack(alignment: .leading) {
-                    let currentSet = workoutVM.currentExerciseVM.currentSet
-                    let currentSetModel = workoutVM.exercises[index].sets[currentSet]
-                    
-                    // Show title for large screens only
-                    if screenBounds.width >= 180 {
-                        Text(workoutVM.exercises[index].name)
-                            .frame(maxWidth: .infinity, alignment: .topLeading)
-                            .padding(.top)
-                        
-                            .pageHeaderTextStyle()
-                    }
-                                
-                    VStack(alignment: .leading, spacing: 0) {
-                        HStack(alignment: .lastTextBaseline) {
-                            Text("\(currentSet + 1) / \(workoutVM.exercises[index].sets.count)")
-                                .secondaryTextStyle()
-                            Text("\(currentSetModel.type.description)")
-                                .secondaryLabelStyle()
-                                .bold()
-                            Spacer()
-                        }
-                        .padding(.bottom, -6)
-                        
-                        HStack(alignment: .lastTextBaseline) {
-                            Text("\(weight, specifier: Rounding.hundredths.specifierString())")
-                                .primaryEditableTextStyle(lineForegroundStyle: .gray)
-                                .onTapGesture {
-                                    showWeightSlider.toggle()
-                                }
-                            Text("KG")
-                                .primaryLabelStyle()
-                                .bold()
-                            Spacer()
-                        }
-                        .padding(.bottom, -4)
-                        
-                        HStack(alignment: .lastTextBaseline) {
-                            Text("\(reps, specifier: Rounding.ones.specifierString())")
-                                .primaryEditableTextStyle(lineForegroundStyle: .gray)
-                                .onTapGesture {
-                                    showRepsSlider.toggle()
-                                }
-                            Image(systemName: "repeat")
-                                .foregroundStyle(.blue)
-                                .labelImageStyle()
-                            Spacer()
-                        }
-                    }
-                    
-                    HStack(alignment: .bottom) {
-                        Button(action: {
-                            showOptions.toggle()
-                        }, label: {
-                            Image(systemName: "ellipsis")
-                        })
-                        .tint(.gray)
-                        
-                        Button(action: {
-                        }, label: {
-                            Image(systemName: "play")
-                        })
-                        .tint(.green)
-                    }
-                    .secondaryTextStyle()
-                }
-            }
-        }
-        .tabViewStyle(VerticalPageTabViewStyle())
-        
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .scenePadding([.horizontal, .top])
-        .ignoresSafeArea(edges: .bottom)
-        .background(.black)
-        
-        .digitalCrownRotation(
-            detent: $crownValue,
-            from: 1,
-            through: 100,
-            by: 1,
-            sensitivity: .low,
-            isContinuous: true,
-            isHapticFeedbackEnabled: true,
-            onChange: { crownEvent in
-                workoutVM.currentExerciseIdx = roundDigitalCrownValue(value: crownEvent.offset, velocity: crownEvent.velocity)
-            }
-        )
-        
-        .onAppear {
-            let currentSet = workoutVM.currentExerciseVM.currentSet
-            let currentSetModel = workoutVM.exercises[workoutVM.currentExerciseIdx].sets[currentSet]
+        VStack(alignment: .leading) {
+            Text(exerciseVM.exercise.name)
+                .frame(maxWidth: .infinity, alignment: .topLeading)
+                .lineLimit(screenBounds.width >= 180 ? 2 : 1)
             
-            weight = CGFloat(currentSetModel.weight)
-            reps = CGFloat(currentSetModel.reps)
+                .pageHeaderTextStyle()
+                        
+            VStack(alignment: .leading, spacing: 0) {
+                HStack(alignment: .lastTextBaseline) {
+                    Text("\(exerciseVM.exercise.sets[exerciseVM.currentSet].weight, specifier: Rounding.hundredths.specifierString())")
+                        .primaryEditableTextStyle(lineForegroundStyle: .gray)
+                        .onTapGesture {
+                            showWeightSlider.toggle()
+                        }
+                    Text("KG")
+                        .primaryLabelStyle()
+                        .bold()
+                    Spacer()
+                }
+                .padding(.bottom, -4)
+                
+                HStack(alignment: .lastTextBaseline) {
+                    Text("\(exerciseVM.exercise.sets[exerciseVM.currentSet].reps)")
+                        .primaryEditableTextStyle(lineForegroundStyle: .gray)
+                        .onTapGesture {
+                            showRepsSlider.toggle()
+                        }
+                    Image(systemName: "repeat")
+                        .foregroundStyle(.blue)
+                        .labelImageStyle()
+                    Spacer()
+                }
+                
+                HStack(alignment: .lastTextBaseline) {
+                    Text("\(exerciseVM.exercise.sets[exerciseVM.currentSet].type.description)")
+                        .secondaryLabelStyle()
+                        .bold()
+                    Text("(Set \(exerciseVM.currentSet + 1) of \(exerciseVM.exercise.sets.count))")
+                        .secondaryLabelStyle()
+                        .foregroundStyle(.gray)
+                    Spacer()
+                }
+                .padding(.leading, 2)
+            }
+            
+            HStack(alignment: .bottom) {
+                Button(action: {
+                    showOptionsMenu.toggle()
+                }, label: {
+                    Image(systemName: "ellipsis")
+                })
+                .tint(.gray)
+                
+                Button(action: {
+                    if exerciseVM.setsVM[exerciseVM.currentSet].state == ExerciseSetState.notStarted {
+                        exerciseVM.setsVM[exerciseVM.currentSet].state = ExerciseSetState.started
+                        showSetRecorder = true
+                    } else {
+                        exerciseVM.completeCurrentSet(setPerformance: UserSetPerformance(
+                                type: exerciseVM.exercise.sets[exerciseVM.currentSet].type,
+                                status: .completed,
+                                weight: exerciseVM.exercise.sets[exerciseVM.currentSet].weight,
+                                reps: exerciseVM.exercise.sets[exerciseVM.currentSet].reps
+                            )
+                        )
+                    }
+                }, label: {
+                    Image(systemName: exerciseVM.setsVM[exerciseVM.currentSet].state == ExerciseSetState.completed ? "arrow.right" : "play")
+                })
+                .tint(.green)
+            }
+            .secondaryTextStyle()
+        }
+        .onAppear {
+            weight = CGFloat(exerciseVM.exercise.sets[exerciseVM.currentSet].weight)
+            reps = CGFloat(exerciseVM.exercise.sets[exerciseVM.currentSet].reps)
         }
         
-//        Options modal animation
-        .animation(.easeInOut(duration: 0.3), value: showOptions)
-        .sheet(isPresented: $showOptions, content: {
-            ExerciseOptionsView(showModal: $showOptions)
+//        Options modal animation.
+        .animation(.easeInOut(duration: 0.3), value: showOptionsMenu)
+        .sheet(isPresented: $showOptionsMenu, content: {
+            ExerciseOptionsView(showModal: $showOptionsMenu)
         })
         
-//        Weight slider view animation
+//        Weight slider view animation.
         .animation(.easeInOut(duration: 0.3), value: showWeightSlider)
-        .sheet(isPresented: $showWeightSlider, content: {
+        .sheet(isPresented: $showWeightSlider, onDismiss: {
+            exerciseVM.exercise.sets[exerciseVM.currentSet].weight = Float32(weight)
+        }, content: {
             HorizontalSliderView(
                 config: weightSliderViewConfig,
                 value: $weight,
@@ -156,9 +132,12 @@ struct ExerciseView: View {
             )
         })
         
-//        Reps slider view animation
+//        Reps slider view animation.
         .animation(.easeInOut(duration: 0.3), value: showRepsSlider)
-        .sheet(isPresented: $showRepsSlider, content: {
+        .sheet(isPresented: $showRepsSlider, onDismiss: {
+            print("reps: \(reps)")
+            exerciseVM.exercise.sets[exerciseVM.currentSet].reps = Int32(reps)
+        }, content: {
             HorizontalSliderView(
                 config: repsSliderViewConfig,
                 value: $reps,
@@ -166,25 +145,21 @@ struct ExerciseView: View {
                 sliderValue: reps
             )
         })
-    }
-    
-    private func roundDigitalCrownValue(value: Double, velocity: CDouble) -> Int {
-       let roundingRule: FloatingPointRoundingRule
-       switch velocity {
-       case let value where value < 0:
-           roundingRule = .up
-       case let value where value == 0:
-           roundingRule = .toNearestOrAwayFromZero
-       case let value where value > 0:
-           roundingRule = .down
-       default:
-           roundingRule = .toNearestOrAwayFromZero
-       }
-
-       return Int(value.rounded(roundingRule))
+        
+//        Set recorder view animation.
+        .animation(.easeInOut(duration: 0.3), value: showSetRecorder)
+        .sheet(isPresented: $showSetRecorder, onDismiss: {
+            showSetRecorder = false
+        }, content: {
+            SetRecordView(setVM: exerciseVM.setsVM[exerciseVM.currentSet])
+        })
     }
 }
 
 #Preview {
-    ExerciseView(workoutVM: WorkoutViewModel(plannedExercises: dummyExerciseData))
+    ExerciseView(exerciseVM: ExerciseViewModel(dummyExerciseData[0]))
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .scenePadding([.horizontal, .top])
+        .ignoresSafeArea(edges: .bottom)
+        .background(.black)
 }

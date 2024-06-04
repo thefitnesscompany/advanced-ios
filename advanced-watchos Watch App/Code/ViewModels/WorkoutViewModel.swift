@@ -16,7 +16,7 @@ class WorkoutViewModel: ObservableObject {
     }
     @Published var currentExerciseVM: ExerciseViewModel
     
-    var exercisesVM: [ExerciseViewModel]
+    @Published var exercisesVM: [ExerciseViewModel]
     
     init(plannedExercises: [Exercise]) {
         let exercisesVM = plannedExercises.map({ exercise in

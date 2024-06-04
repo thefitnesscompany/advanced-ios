@@ -14,7 +14,7 @@ struct SessionPagingView: View {
 
     enum Tab {
         // controls
-        case metrics, exercise, nowPlaying
+        case metrics, workout, nowPlaying
     }
 
     var body: some View {
@@ -22,7 +22,7 @@ struct SessionPagingView: View {
             TabView(selection: $selection) {
     //            ControlsView().tag(Tab.controls)
                 MetricsView().tag(Tab.metrics)
-                ExerciseView(workoutVM: WorkoutViewModel(plannedExercises: dummyExerciseData)).tag(Tab.exercise)
+                WorkoutView(workoutVM: WorkoutViewModel(plannedExercises: dummyExerciseData)).tag(Tab.workout)
                 NowPlayingView().tag(Tab.nowPlaying)
             }
 //            .navigationTitle("")

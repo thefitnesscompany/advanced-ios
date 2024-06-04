@@ -19,7 +19,7 @@ let dummyExerciseData: [Exercise] = [
         name: "Standing Calf Raises",
         sets: [
             ExerciseSet(type: .warmup, weight: 60.25, reps: 10),
-            ExerciseSet(type: .working, weight: 75.5, reps: 10),
+            ExerciseSet(type: .working, weight: 75.5, reps: 9),
             ExerciseSet(type: .working, weight: 80.5, reps: 8),
             ExerciseSet(type: .failure, weight: 82.75, reps: 8)
         ]
@@ -29,8 +29,8 @@ let dummyExerciseData: [Exercise] = [
         name: "Back Squats",
         sets: [
             ExerciseSet(type: .warmup, weight: 50.0, reps: 10),
-            ExerciseSet(type: .working, weight: 100.0, reps: 10),
-            ExerciseSet(type: .working, weight: 127.75, reps: 10),
+            ExerciseSet(type: .working, weight: 100.0, reps: 9),
+            ExerciseSet(type: .working, weight: 127.75, reps: 9),
             ExerciseSet(type: .failure, weight: 135.0, reps: 8),
             ExerciseSet(type: .failure, weight: 135.25, reps: 8)
         ]

@@ -15,7 +15,7 @@ extension View {
                    .stroke(style: StrokeStyle(lineWidth: 2, dash: [2]))
                    .frame(height: 1)
                    .padding(.top, 36)
-                   .padding(.leading, 4)
+                   .padding(.leading, 2)
                    .foregroundStyle(lineForegroundStyle)
            )
            .secondaryTextStyle()

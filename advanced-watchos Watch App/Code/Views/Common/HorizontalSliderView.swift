@@ -18,21 +18,24 @@ struct HorizontalSliderView: View {
     
     var body: some View {
         VStack {
-            HStack(alignment: .lastTextBaseline, spacing: 5) {
-                Text("\(sliderValue, specifier: config.roundingSpecifier)")
-                    .font(.title)
-                    .contentTransition(.numericText(value: sliderValue))
-                    .animation(.snappy, value: sliderValue)
+            VStack(spacing: 0) {
+                HStack(alignment: .lastTextBaseline, spacing: 5) {
+                    Text("\(sliderValue, specifier: config.roundingSpecifier)")
+                        .font(.title)
+                        .contentTransition(.numericText(value: sliderValue))
+                        .animation(.snappy, value: sliderValue)
+                        .padding(.bottom, 4)
+                    
+                    Text("\(config.label)")
+                        .font(.title2)
+                        .textScale(.secondary)
+                        .foregroundStyle(.gray)
+                }
                 
-                Text("\(config.label)")
-                    .font(.title2)
-                    .textScale(.secondary)
-                    .foregroundStyle(.gray)
+                HorizontalSlider(config: config.sliderConfig, value: $sliderValue)
+                    .frame(height: 60)
+                    .padding(.bottom)
             }
-            
-            HorizontalSlider(config: config.sliderConfig, value: $sliderValue)
-                .frame(height: 60)
-                .padding(.bottom)
             
             Spacer()
             

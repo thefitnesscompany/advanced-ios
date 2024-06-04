@@ -9,8 +9,9 @@ import Foundation
 
 class ExerciseViewModel: ObservableObject {
     @Published var currentSet: Int
-    
-    var exercise: Exercise
+    @Published var exercise: Exercise
+    @Published var setsVM: [SetViewModel]
+
     var performance: UserExercisePerformance
     
     init(_ exercise: Exercise) {
@@ -18,6 +19,11 @@ class ExerciseViewModel: ObservableObject {
 
         self.exercise = exercise
         self.performance = ExerciseViewModel.getZeroStateExercisesPerformance(exercise: exercise)
+        
+        // TODO: Handle cases of set updation from options menu.
+        self.setsVM = exercise.sets.map({ _ in
+            SetViewModel(setState: .notStarted)
+        })
     }
     
     func completeCurrentSet(setPerformance: UserSetPerformance) {

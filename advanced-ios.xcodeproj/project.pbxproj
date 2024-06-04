@@ -13,6 +13,12 @@
 		D968A8652C0DBD3200A1402C /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D968A8642C0DBD3200A1402C /* CameraManager.swift */; };
 		D968A8682C0DBEF900A1402C /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D968A8672C0DBEF900A1402C /* CameraViewModel.swift */; };
 		D968A86A2C0DBFE500A1402C /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D968A8692C0DBFE500A1402C /* CameraPreview.swift */; };
+		D968A86D2C0E440100A1402C /* CameraCaptureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D968A86C2C0E440100A1402C /* CameraCaptureButton.swift */; };
+		D968A86F2C0E449F00A1402C /* CameraFocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D968A86E2C0E449F00A1402C /* CameraFocusView.swift */; };
+		D968A8712C0E452C00A1402C /* StackedThumbnails.swift in Sources */ = {isa = PBXBuildFile; fileRef = D968A8702C0E452C00A1402C /* StackedThumbnails.swift */; };
+		D968A8752C0EE06300A1402C /* SetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D968A8742C0EE06300A1402C /* SetViewModel.swift */; };
+		D968A8772C0F21C900A1402C /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D968A8762C0F21C900A1402C /* WorkoutView.swift */; };
+		D968A8792C0F222400A1402C /* ExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D968A8782C0F222400A1402C /* ExerciseView.swift */; };
 		D9B7EED92C07494C0033C7BF /* AdvancedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B7EED82C07494C0033C7BF /* AdvancedApp.swift */; };
 		D9B7EEDB2C07494C0033C7BF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B7EEDA2C07494C0033C7BF /* ContentView.swift */; };
 		D9B7EEDD2C07494C0033C7BF /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B7EEDC2C07494C0033C7BF /* Item.swift */; };
@@ -39,7 +45,7 @@
 		D9B7EF662C09DA730033C7BF /* Rounding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B7EF652C09DA730033C7BF /* Rounding.swift */; };
 		D9B7EF682C09DAA80033C7BF /* ExerciseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B7EF672C09DAA80033C7BF /* ExerciseModel.swift */; };
 		D9B7EF6A2C0AFBA50033C7BF /* ExerciseViewLegacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B7EF692C0AFBA50033C7BF /* ExerciseViewLegacy.swift */; };
-		D9B7EF6C2C0BB7D90033C7BF /* ExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B7EF6B2C0BB7D90033C7BF /* ExerciseView.swift */; };
+		D9B7EF6C2C0BB7D90033C7BF /* ExerciseViewLegacy2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B7EF6B2C0BB7D90033C7BF /* ExerciseViewLegacy2.swift */; };
 		D9B7EF702C0C4BA30033C7BF /* ExerciseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B7EF6F2C0C4BA30033C7BF /* ExerciseViewModel.swift */; };
 		D9B7EF722C0C538F0033C7BF /* TextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B7EF712C0C538F0033C7BF /* TextStyle.swift */; };
 		D9B7EF762C0C55F60033C7BF /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B7EF752C0C55F60033C7BF /* Line.swift */; };
@@ -88,6 +94,12 @@
 		D968A8662C0DBE2A00A1402C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D968A8672C0DBEF900A1402C /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		D968A8692C0DBFE500A1402C /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
+		D968A86C2C0E440100A1402C /* CameraCaptureButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCaptureButton.swift; sourceTree = "<group>"; };
+		D968A86E2C0E449F00A1402C /* CameraFocusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraFocusView.swift; sourceTree = "<group>"; };
+		D968A8702C0E452C00A1402C /* StackedThumbnails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackedThumbnails.swift; sourceTree = "<group>"; };
+		D968A8742C0EE06300A1402C /* SetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetViewModel.swift; sourceTree = "<group>"; };
+		D968A8762C0F21C900A1402C /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
+		D968A8782C0F222400A1402C /* ExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseView.swift; sourceTree = "<group>"; };
 		D9B7EED52C07494C0033C7BF /* advanced-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "advanced-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9B7EED82C07494C0033C7BF /* AdvancedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedApp.swift; sourceTree = "<group>"; };
 		D9B7EEDA2C07494C0033C7BF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -116,7 +128,7 @@
 		D9B7EF652C09DA730033C7BF /* Rounding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rounding.swift; sourceTree = "<group>"; };
 		D9B7EF672C09DAA80033C7BF /* ExerciseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseModel.swift; sourceTree = "<group>"; };
 		D9B7EF692C0AFBA50033C7BF /* ExerciseViewLegacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseViewLegacy.swift; sourceTree = "<group>"; };
-		D9B7EF6B2C0BB7D90033C7BF /* ExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseView.swift; sourceTree = "<group>"; };
+		D9B7EF6B2C0BB7D90033C7BF /* ExerciseViewLegacy2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseViewLegacy2.swift; sourceTree = "<group>"; };
 		D9B7EF6F2C0C4BA30033C7BF /* ExerciseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseViewModel.swift; sourceTree = "<group>"; };
 		D9B7EF712C0C538F0033C7BF /* TextStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyle.swift; sourceTree = "<group>"; };
 		D9B7EF752C0C55F60033C7BF /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
@@ -170,6 +182,7 @@
 		D968A8552C0DABDF00A1402C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D968A86B2C0E43D400A1402C /* Components */,
 				D968A85F2C0DBA7A00A1402C /* CameraView.swift */,
 				D968A8692C0DBFE500A1402C /* CameraPreview.swift */,
 			);
@@ -200,6 +213,16 @@
 				D968A8672C0DBEF900A1402C /* CameraViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		D968A86B2C0E43D400A1402C /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				D968A86C2C0E440100A1402C /* CameraCaptureButton.swift */,
+				D968A86E2C0E449F00A1402C /* CameraFocusView.swift */,
+				D968A8702C0E452C00A1402C /* StackedThumbnails.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		D9B7EECC2C07494C0033C7BF = {
@@ -375,6 +398,7 @@
 				D9B7EF6F2C0C4BA30033C7BF /* ExerciseViewModel.swift */,
 				D9B7EF792C0C655D0033C7BF /* WorkoutSessionViewModel.swift */,
 				D9B7EF7F2C0C7AC00033C7BF /* WorkoutViewModel.swift */,
+				D968A8742C0EE06300A1402C /* SetViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -402,8 +426,9 @@
 				D9B7EF552C0790740033C7BF /* MetricsView.swift */,
 				D9B7EF592C079A3D0033C7BF /* SessionPagingView.swift */,
 				D9B7EF632C09D3410033C7BF /* ExerciseOptionsView.swift */,
-				D9B7EF6B2C0BB7D90033C7BF /* ExerciseView.swift */,
 				D9B7EF892C0CE2BC0033C7BF /* SetRecordView.swift */,
+				D968A8762C0F21C900A1402C /* WorkoutView.swift */,
+				D968A8782C0F222400A1402C /* ExerciseView.swift */,
 			);
 			path = WorkoutSession;
 			sourceTree = "<group>";
@@ -421,6 +446,7 @@
 		D9B7EF6E2C0C40C40033C7BF /* Legacy */ = {
 			isa = PBXGroup;
 			children = (
+				D9B7EF6B2C0BB7D90033C7BF /* ExerciseViewLegacy2.swift */,
 				D9B7EF5C2C07B1DA0033C7BF /* SetRecordViewLegacy.swift */,
 				D9B7EF532C078FD20033C7BF /* ControlsView.swift */,
 				D9B7EF612C09B1380033C7BF /* ScrollableBox.swift */,
@@ -637,12 +663,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D968A86F2C0E449F00A1402C /* CameraFocusView.swift in Sources */,
 				D9B7EEDB2C07494C0033C7BF /* ContentView.swift in Sources */,
 				D9B7EEDD2C07494C0033C7BF /* Item.swift in Sources */,
 				D9B7EED92C07494C0033C7BF /* AdvancedApp.swift in Sources */,
 				D968A86A2C0DBFE500A1402C /* CameraPreview.swift in Sources */,
 				D968A8602C0DBA7A00A1402C /* CameraView.swift in Sources */,
+				D968A86D2C0E440100A1402C /* CameraCaptureButton.swift in Sources */,
 				D968A8652C0DBD3200A1402C /* CameraManager.swift in Sources */,
+				D968A8712C0E452C00A1402C /* StackedThumbnails.swift in Sources */,
 				D968A8682C0DBEF900A1402C /* CameraViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -654,6 +683,7 @@
 				D9B7EF5A2C079A3D0033C7BF /* SessionPagingView.swift in Sources */,
 				D9B7EF872C0CAFAC0033C7BF /* HorizontalSliderView.swift in Sources */,
 				D9B7EF542C078FD20033C7BF /* ControlsView.swift in Sources */,
+				D968A8792C0F222400A1402C /* ExerciseView.swift in Sources */,
 				D9B7EF562C0790740033C7BF /* MetricsView.swift in Sources */,
 				D9B7EF642C09D3410033C7BF /* ExerciseOptionsView.swift in Sources */,
 				D9B7EF522C078F7C0033C7BF /* StringExtensions.swift in Sources */,
@@ -665,6 +695,7 @@
 				D9B7EF622C09B1380033C7BF /* ScrollableBox.swift in Sources */,
 				D9B7EF8A2C0CE2BC0033C7BF /* SetRecordView.swift in Sources */,
 				D9B7EF782C0C56890033C7BF /* ImageStyle.swift in Sources */,
+				D968A8772C0F21C900A1402C /* WorkoutView.swift in Sources */,
 				D9B7EF7C2C0C682B0033C7BF /* UserExercisePerformanceModel.swift in Sources */,
 				D9B7EF662C09DA730033C7BF /* Rounding.swift in Sources */,
 				D9B7EF852C0C928F0033C7BF /* HorizontalSlider.swift in Sources */,
@@ -675,7 +706,8 @@
 				D9B7EF762C0C55F60033C7BF /* Line.swift in Sources */,
 				D9B7EF7A2C0C655D0033C7BF /* WorkoutSessionViewModel.swift in Sources */,
 				D9B7EEEF2C074AAD0033C7BF /* AdvancedApp.swift in Sources */,
-				D9B7EF6C2C0BB7D90033C7BF /* ExerciseView.swift in Sources */,
+				D968A8752C0EE06300A1402C /* SetViewModel.swift in Sources */,
+				D9B7EF6C2C0BB7D90033C7BF /* ExerciseViewLegacy2.swift in Sources */,
 				D9B7EF7E2C0C79C00033C7BF /* ExerciseSetModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

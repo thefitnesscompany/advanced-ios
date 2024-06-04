@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct SetRecordView: View {
-    @State var isRecording: Bool = true
+    @Environment (\.dismiss) var dismiss
+    @ObservedObject var setVM: SetViewModel
     
     var body: some View {
         Color.green
@@ -16,7 +17,7 @@ struct SetRecordView: View {
             .ignoresSafeArea()
             .overlay(
                 VStack(alignment: .leading, spacing: 0) {
-                    if isRecording {
+                    if setVM.state == .started {
                         Text("Recording...")
                             .frame(maxWidth: .infinity, alignment: .topLeading)
                             .pageHeaderTextStyle()
@@ -42,15 +43,17 @@ struct SetRecordView: View {
                         
                         Spacer()
                         
-                        Button(action: {}, label: {
+                        Button(action: {
+                            setVM.stopPrediction()
+                        }, label: {
                             Image(systemName: "pause")
                         })
                         .secondaryTextStyle()
-                    } else {
-                        Text("We think you did ")
-                        + Text("\(10)").bold().font(.system(.callout, design: .rounded))
-                                    + Text(" reps of ")
-                        + Text("\(100) kgs").bold().font(.system(.callout, design: .rounded))
+                    } else if setVM.state == .completed {
+                        Text("We calculated ")
+                        + Text(verbatim: "\(100) reps").bold().font(.system(.callout, design: .rounded))
+                                    + Text(" of ")
+                        + Text(verbatim: "\(100.25) kgs").bold().font(.system(.callout, design: .rounded))
                                     + Text(" for this ")
                         + Text("warmup").bold().font(.system(.callout, design: .rounded))
                                     + Text(" set.")
@@ -58,15 +61,19 @@ struct SetRecordView: View {
                         Spacer()
                         
                         HStack {
-                            Button(action: {}, label: {
+                            Button(action: {
+                                dismiss()
+                            }, label: {
                                 Text("Naah")
                             })
                             
-                            Button(action: {}, label: {
+                            Button(action: {
+                                dismiss()
+                            }, label: {
                                 Text("Yaay")
                             })
                         }
-                        .font(.system(.footnote, design: .rounded))
+                        .font(.system(.caption, design: .rounded))
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -76,5 +83,13 @@ struct SetRecordView: View {
 }
 
 #Preview {
-    SetRecordView()
+    SetRecordViewPreview()
+}
+
+struct SetRecordViewPreview: View {
+    @State var setState: ExerciseSetState = .started
+    
+    var body: some View {
+        SetRecordView(setVM: SetViewModel(setState: setState))
+    }
 }

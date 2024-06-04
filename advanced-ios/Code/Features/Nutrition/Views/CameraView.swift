@@ -15,6 +15,8 @@ struct CameraView: View {
     @State private var focusLocation: CGPoint = .zero
     @State private var currentZoomFactor: CGFloat = 1.0
     
+    @State var photos: [String] = ["test-food-1", "test-food-2", "test-food-3"]
+    
     var body: some View {
         GeometryReader { _ in
             ZStack {
@@ -46,7 +48,7 @@ struct CameraView: View {
 //                        .animation(.easeInOut, value: 0.5)
                                                 
                         if isFocused {
-                            FocusView(position: $focusLocation)
+                            CameraFocusView(position: $focusLocation)
                                 .scaleEffect(isScaled ? 0.8 : 1)
                                 .onAppear {
                                     withAnimation(.spring(response: 0.4, dampingFraction: 0.6, blendDuration: 0)) {
@@ -60,14 +62,28 @@ struct CameraView: View {
                         }
                     }
                     
-                    HStack {
-                        PhotoThumbnail(image: $viewModel.capturedImage)
-                        Spacer()
-                        CaptureButton { viewModel.captureImage() }
-                        Spacer()
-                        CameraSwitchButton { viewModel.switchCamera() }
+                    ZStack {
+                        CameraCaptureButton { viewModel.captureImage() }
+                            .frame(maxWidth: .infinity, alignment: .center)
+                        
+                        HStack {
+                            StackedThumbnails(photos: $photos)
+                                .padding(.leading, 20)
+                            Spacer()
+//                            CameraSwitchButton { viewModel.switchCamera() }
+                        }
                     }
-                    .padding(20)
+                    .padding([.horizontal, .bottom], 20)
+                    .padding(.top, 40)
+                    
+//                    HStack {
+//                        PhotoThumbnail(image: $viewModel.capturedImage)
+//                        Spacer()
+//                        CameraCaptureButton { viewModel.captureImage() }
+//                        Spacer()
+//                        CameraSwitchButton { viewModel.switchCamera() }
+//                    }
+//                    .padding(20)
                 }
             }
             .alert(isPresented: $viewModel.showAlertError) {
@@ -101,42 +117,25 @@ struct CameraView: View {
     }
 }
 
-struct PhotoThumbnail: View {
-    @Binding var image: UIImage?
-    
-    var body: some View {
-        Group {
-            if let image {
-                Image(uiImage: image)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 60, height: 60)
-                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-            } else {
-                Rectangle()
-                    .frame(width: 50, height: 50, alignment: .center)
-                    .foregroundColor(.black)
-            }
-        }
-    }
-}
-
-struct CaptureButton: View {
-    var action: () -> Void
-    
-    var body: some View {
-        Button(action: action) {
-            Circle()
-                .foregroundColor(.white)
-                .frame(width: 70, height: 70, alignment: .center)
-                .overlay(
-                    Circle()
-                        .stroke(Color.black.opacity(0.8), lineWidth: 2)
-                        .frame(width: 59, height: 59, alignment: .center)
-                )
-        }
-    }
-}
+//    struct PhotoThumbnail: View {
+//        @Binding var image: UIImage?
+//
+//        var body: some View {
+//            Group {
+//                if let image {
+//                    Image(uiImage: image)
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fill)
+//                        .frame(width: 60, height: 60)
+//                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+//                } else {
+//                    Rectangle()
+//                        .frame(width: 50, height: 50, alignment: .center)
+//                        .foregroundColor(.black)
+//                }
+//            }
+//        }
+//    }
 
 struct CameraSwitchButton: View {
     var action: () -> Void
@@ -150,18 +149,6 @@ struct CameraSwitchButton: View {
                     Image(systemName: "camera.rotate.fill")
                         .foregroundColor(.white))
         }
-    }
-}
-
-struct FocusView: View {
-    @Binding var position: CGPoint
-    
-    var body: some View {
-        Circle()
-            .frame(width: 70, height: 70)
-            .foregroundColor(.clear)
-            .border(Color.yellow, width: 1.5)
-            .position(x: position.x, y: position.y)
     }
 }
 

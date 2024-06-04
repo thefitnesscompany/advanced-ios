@@ -11,13 +11,14 @@ enum ExerciseSetType {
     case warmup
     case working
     case failure
-//    case drop
+    case drop
     
     var description: String {
         switch self {
         case .warmup: return "Warmup"
         case .working: return "Working"
         case .failure: return "Failure"
+        case .drop: return "Drop"
         }
       }
 }
