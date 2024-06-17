@@ -22,11 +22,27 @@ struct AdvancedApp: App {
             fatalError("Could not create ModelContainer: \(error)")
         }
     }()
+    
+    var modelContainer: ModelContainer = {
+        let schema = Schema([
+            FoodCheckIn.self,
+            DetectedFoodItem.self,
+            FoodItem.self,
+            NutritionalInfo.self
+        ])
+        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false, allowsSave: true)
+
+        do {
+            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+        } catch {
+            fatalError("Could not create ModelContainer: \(error)")
+        }
+    }()
 
     var body: some Scene {
         WindowGroup {
-            CameraView()
+            PresenterView()
         }
-        .modelContainer(sharedModelContainer)
+        .modelContainer(modelContainer)
     }
 }

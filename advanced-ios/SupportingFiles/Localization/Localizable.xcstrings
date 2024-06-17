@@ -1,16 +1,73 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    " 43g of protein" : {
+
+    },
+    " 75g of fats" : {
+
+    },
+    " 109g of carbs" : {
+
+    },
+    " 1229 calories" : {
+
+    },
+    " each day of this month." : {
+
+    },
+    "," : {
+
+    },
+    ", and" : {
+
+    },
+    "." : {
+
+    },
+    ". Try to avoid foods with high carbs to balance out the rest of your day." : {
+
+    },
+    "%@" : {
+
+    },
+    "A View" : {
+
+    },
     "Add Item" : {
 
     },
     "Application doesn't have all permissions to use camera and microphone, please change privacy settings." : {
 
     },
+    "B View" : {
+
+    },
+    "Fever" : {
+
+    },
     "Go to settings" : {
 
     },
+    "Hello" : {
+
+    },
+    "Hello World!!" : {
+
+    },
+    "Hello, World!" : {
+
+    },
+    "Home" : {
+
+    },
+    "Information is sourced from website results" : {
+
+    },
     "Item at %@" : {
+
+    },
+    "Jun 2024" : {
 
     },
     "LandingView.Title" : {
@@ -24,10 +81,58 @@
         }
       }
     },
+    "Navigate to t2" : {
+
+    },
+    "Samosas" : {
+
+    },
+    "Search View 1: %@" : {
+
+    },
+    "Search View 2: %@" : {
+
+    },
     "Select an item" : {
 
     },
+    "Select Number: %lld" : {
+
+    },
+    "Select String: %lld" : {
+
+    },
+    "Show similar" : {
+
+    },
+    "This Month, Jun 2024" : {
+
+    },
+    "Today" : {
+
+    },
+    "Today, Jun 5" : {
+
+    },
     "Warning" : {
+
+    },
+    "Whole-grain pancakes can be a delicious way to eat more whole grains that offer several health benefits." : {
+
+    },
+    "World" : {
+
+    },
+    "You selected the number %lld" : {
+
+    },
+    "You selected the string %@" : {
+
+    },
+    "You've had" : {
+
+    },
+    "You've had an average of" : {
 
     }
   },

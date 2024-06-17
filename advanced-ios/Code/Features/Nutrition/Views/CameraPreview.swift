@@ -19,7 +19,7 @@ struct CameraPreview: UIViewRepresentable { // for attaching AVCaptureVideoPrevi
         view.videoPreviewLayer.session = session
         view.videoPreviewLayer.videoGravity = .resizeAspectFill
         view.videoPreviewLayer.connection?.videoOrientation = .portrait
-        view.videoPreviewLayer.cornerRadius = 30
+        view.videoPreviewLayer.cornerRadius = xLargeCornerRadius
         
         // Add a tap gesture recognizer to the view
         let tapGesture = UITapGestureRecognizer(target: context.coordinator, action: #selector(context.coordinator.handleTapGesture(_:)))

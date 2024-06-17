@@ -17,8 +17,7 @@ enum Status {
 }
 
 class CameraManager: ObservableObject {
-    
-    @Published var capturedImage: UIImage? = nil
+    @Published var capturedImage: UIImage?
     @Published private var flashMode: AVCaptureDevice.FlashMode = .off
     
     @Published var status = Status.unconfigured
@@ -42,10 +41,7 @@ class CameraManager: ObservableObject {
             self.session.beginConfiguration()
             self.session.sessionPreset = .photo
             
-            // Add video input.
             self.setupVideoInput()
-            
-            // Add the photo output.
             self.setupPhotoOutput()
             
             self.session.commitConfiguration()

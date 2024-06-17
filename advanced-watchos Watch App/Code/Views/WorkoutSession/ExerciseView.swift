@@ -135,7 +135,6 @@ struct ExerciseView: View {
 //        Reps slider view animation.
         .animation(.easeInOut(duration: 0.3), value: showRepsSlider)
         .sheet(isPresented: $showRepsSlider, onDismiss: {
-            print("reps: \(reps)")
             exerciseVM.exercise.sets[exerciseVM.currentSet].reps = Int32(reps)
         }, content: {
             HorizontalSliderView(

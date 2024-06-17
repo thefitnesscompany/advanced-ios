@@ -18,7 +18,22 @@ class CameraViewModel: ObservableObject {
     @Published var showSettingAlert = false
     @Published var isPermissionGranted: Bool = false
     
-    @Published var capturedImage: UIImage?
+    private var maxThumbnailsCount = 3
+    @Published var capturedImage: UIImage? {
+        didSet {
+            if capturedImage != nil {
+                savePhoto(capturedImage!)
+                
+                DispatchQueue.main.async {
+                    self.thumbnails.insert(self.capturedImage!, at: 0)
+                    if self.thumbnails.count > self.maxThumbnailsCount {
+                        self.thumbnails.removeLast(self.thumbnails.count - self.maxThumbnailsCount)
+                   }
+               }
+            }
+        }
+    }
+    @Published var thumbnails: [UIImage] = []
     
     var alertError: AlertError!
     var session: AVCaptureSession = .init()
@@ -42,6 +57,50 @@ class CameraViewModel: ObservableObject {
         cameraManager.$capturedImage.sink { [weak self] image in
             self?.capturedImage = image
         }.store(in: &cancelables)
+    }
+    
+    func savePhoto(_ image: UIImage) {
+        if let imageData = image.jpegData(compressionQuality: 1.0) {
+            let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+               if let documentsDirectory = paths {
+                   let fileName = Date().ISO8601Format() + ".jpg"
+                   let fileURL = documentsDirectory.appendingPathComponent(fileName, isDirectory: false)
+                   try? imageData.write(to: fileURL)
+                   
+                   // Store the file name in UserDefaults for quick access.
+                   var savedPhotos = UserDefaults.standard.stringArray(forKey: "savedPhotos") ?? []
+                   savedPhotos.insert(fileName, at: 0)
+                   if savedPhotos.count > maxThumbnailsCount {
+                       savedPhotos.removeLast(savedPhotos.count - maxThumbnailsCount)
+                   }
+                   
+                   UserDefaults.standard.set(savedPhotos, forKey: "savedPhotos")
+               }
+        }
+    }
+    
+    func restorePhotos() {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+
+        guard let documentsDirectory = paths.first else { return }
+        var savedPhotos = UserDefaults.standard.stringArray(forKey: "savedPhotos") ?? []
+        
+        if savedPhotos.count > maxThumbnailsCount {
+            savedPhotos = Array(savedPhotos.suffix(maxThumbnailsCount))
+            UserDefaults.standard.set(savedPhotos, forKey: "savedPhotos")
+        }
+
+        var restoredImages: [UIImage] = []
+        for fileName in savedPhotos {
+            let fileURL = documentsDirectory.appendingPathComponent(fileName)
+            if let data = try? Data(contentsOf: fileURL), let image = UIImage(data: data) {
+                restoredImages.append(image)
+            }
+        }
+        
+        DispatchQueue.main.async {
+            self.thumbnails = restoredImages
+        }
     }
     
     func requestCameraPermission() {
